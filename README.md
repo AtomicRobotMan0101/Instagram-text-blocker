@@ -1,11 +1,3 @@
----
-id: 4368f2a9-eb39-4009-aecf-afa8c3bbd45c
-title: README
-tags: []
-pinned: false
-created: 2026-10-31T03:52:09.762253358+00:00
-modified: 2026-10-31T03:55:54.641080933+00:00
----
 # README
 
 # Instagram-text-blocker
@@ -19,6 +11,20 @@ A minimal, open-source Firefox extension for Linux that masks burned-in words or
 When a playing Reel becomes visible, the extension waits three seconds while sampling scaled-down video frames. It looks for a persistent, high-contrast horizontal region typical of subtitles, then leaves one black mask in place until the visible Reel changes. The delay and padding are configurable.
 
 The detector does not use OCR. It neither reads nor stores the words. Avoiding OCR keeps the extension small, fast, and private.
+
+## What it looks like
+
+<img width="250" alt="7" src="https://github.com/user-attachments/assets/31989f1c-1f26-4c86-a712-59bbcf207931" />
+<img width="250"  alt="5" src="https://github.com/user-attachments/assets/a1e47ac0-5f5f-4872-adac-e2a5e6a604e9" />
+<img width="250" alt="4" src="https://github.com/user-attachments/assets/2660fe7a-b6f1-4027-9c51-c1080d1b91ff" />
+<img width="250" alt="3" src="https://github.com/user-attachments/assets/22df575f-c899-497d-87d2-23b33270fc0c" />
+<img width="250" alt="1" src="https://github.com/user-attachments/assets/cd277906-af4d-4078-92b0-945416bd4e4d" />
+
+
+## Where it fails
+<img width="250" alt="not_working_1" src="https://github.com/user-attachments/assets/c22090a3-3136-49c4-a901-c1194c1c55c1" />
+
+
 
 ## Install temporarily (development)
 
