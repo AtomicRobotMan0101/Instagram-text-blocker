@@ -74,4 +74,4 @@ The tests cover the pixel detector with synthetic subtitle and blank frames. Rea
 
 No captured frame leaves memory or is written to disk. The extension requests only Instagram host access and local extension storage. 
 
-Released into the public domain under [The Unlicense](LICENSE).
+Released under the [MIT License](LICENSE).
