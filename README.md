@@ -74,10 +74,10 @@ npm test
 npm run lint
 ```
 
-The tests cover the pixel detector with synthetic subtitle and blank frames. Real-site capture must be tested interactively because of authentication, media URLs, and browser security policy.
-
 ## Privacy and licence
 
 No captured frame leaves memory or is written to disk. The extension requests only Instagram host access and local extension storage. 
+
+ZERO data is captured as telemetry and absolutely ZERO information is sent anywhere for any reason. 
 
 Released under the [MIT License](LICENSE).
