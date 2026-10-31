@@ -1,6 +1,8 @@
-# InstragramTextBlocker
+# Instagram-text-blocker
 
-A minimal, open-source Firefox extension for Linux that places an opaque black bar over burned-in words or subtitles on Instagram Reels. Everything runs locally in the browser. There are no analytics, network requests, cloud APIs, or Google services.
+Places a black bar over the top of the wretched text overlays on Instagram.
+
+A minimal, open-source Firefox extension for Linux that masks burned-in words or subtitles on Instagram Reels. Everything runs locally in the browser. There are no analytics, network requests, cloud APIs, or Google services.
 
 ## How it works
 
@@ -56,4 +58,4 @@ The tests cover the pixel detector with synthetic subtitle and blank frames. Rea
 
 ## Privacy and licence
 
-No captured frame leaves memory or is written to disk. The extension requests only Instagram host access and local extension storage. Released under the [MIT licence](LICENSE).
+No captured frame leaves memory or is written to disk. The extension requests only Instagram host access and local extension storage. Released into the public domain under [The Unlicense](LICENSE).
