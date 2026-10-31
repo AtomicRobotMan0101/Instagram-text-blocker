@@ -1,0 +1,6 @@
+:root { color-scheme: light dark; font: 16px system-ui, sans-serif; }
+main { max-width: 520px; margin: 3rem auto; padding: 0 1rem; }
+label { display: block; margin: 1.2rem 0; }
+input[type="number"] { display: block; width: 8rem; margin-top: .35rem; padding: .35rem; }
+button { padding: .5rem 1rem; } #status { margin-left: 1rem; }
+kbd { border: 1px solid #888; border-radius: 3px; padding: 1px 4px; }

@@ -1,0 +1,49 @@
+{
+  "manifest_version": 2,
+  "name": "Instagram Text Blocker",
+  "version": "0.1.0",
+  "description": "Locally detects and masks burned-in subtitles on Instagram Reels.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "instagram-text-blocker@local.invalid",
+      "strict_min_version": "109.0"
+    }
+  },
+  "permissions": [
+    "storage",
+    "https://www.instagram.com/*"
+  ],
+  "background": {
+    "scripts": ["src/background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["src/detector.js", "src/content.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "toggle-mask": {
+      "suggested_key": {"default": "Alt+Shift+B"},
+      "description": "Toggle the subtitle mask"
+    },
+    "manual-mask": {
+      "suggested_key": {"default": "Alt+Shift+M"},
+      "description": "Create or edit a manual mask"
+    }
+  },
+  "options_ui": {
+    "page": "src/options.html",
+    "open_in_tab": true
+  },
+  "browser_action": {
+    "default_title": "Instagram Text Blocker",
+    "default_popup": "src/popup.html",
+    "default_icon": "icons/icon.svg"
+  },
+  "icons": {
+    "48": "icons/icon.svg"
+  }
+}

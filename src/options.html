@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Instagram Text Blocker settings</title><link rel="stylesheet" href="options.css"></head>
+<body><main>
+  <h1>Instagram Text Blocker</h1>
+  <label><input id="enabled" type="checkbox"> Enable automatic masking</label>
+  <label>Analysis delay (seconds)<input id="delay" type="number" min="1" max="10" step="0.5"></label>
+  <label>Mask padding (pixels)<input id="padding" type="number" min="0" max="80" step="1"></label>
+  <p>Toggle: <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>. Manual mask: <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd>.</p>
+  <button id="save">Save</button><span id="status" role="status"></span>
+</main><script src="options.js"></script></body></html>

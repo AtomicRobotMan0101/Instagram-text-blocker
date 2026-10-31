@@ -1,0 +1,31 @@
+.itb-mask {
+  position: fixed;
+  z-index: 2147483646;
+  background: #000 !important;
+  opacity: 1 !important;
+  pointer-events: none;
+}
+
+.itb-mask.itb-manual {
+  pointer-events: auto;
+  cursor: move;
+  resize: both;
+  overflow: hidden;
+  outline: 2px solid #fff;
+  min-width: 40px;
+  min-height: 20px;
+}
+
+.itb-toast {
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  z-index: 2147483647;
+  padding: 8px 12px;
+  color: white;
+  background: rgba(0, 0, 0, .88);
+  border: 1px solid #777;
+  border-radius: 6px;
+  font: 13px/1.3 sans-serif;
+  pointer-events: none;
+}

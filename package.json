@@ -1,0 +1,7 @@
+{
+  "name": "instragram-text-blocker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {"test": "node --test", "lint": "node --check src/*.js"},
+  "devDependencies": {}
+}
