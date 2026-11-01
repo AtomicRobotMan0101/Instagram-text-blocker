@@ -1,13 +1,13 @@
 "use strict";
 
-const DEFAULTS = { enabled: true, analysisDelayMs: 3000, padding: 12, sampleIntervalMs: 250 };
+const DEFAULTS = { enabled: true, analysisDelayMs: 3000, padding: 12, sampleIntervalMs: 250, maxMasks: 3 };
 let settings = { ...DEFAULTS };
 let currentVideo = null;
 let currentSource = "";
-let mask = null;
+let masks = [];
 let runId = 0;
 let manual = false;
-let activeRegion = null;
+let activeRegions = [];
 
 function toast(text) {
   const old = document.querySelector(".itb-toast");
@@ -32,36 +32,47 @@ function visibleReelVideo() {
     })[0] || null;
 }
 
-function removeMask() {
-  if (mask) mask.remove();
-  mask = null;
+function removeMasks() {
+  masks.forEach((mask) => mask.remove());
+  masks = [];
   manual = false;
-  activeRegion = null;
+  activeRegions = [];
 }
 
-function positionMask(video, region) {
+function positionMasks(video, regions) {
   const r = video.getBoundingClientRect();
   const pad = settings.padding;
-  if (!mask) return;
-  mask.style.left = `${r.left + region.x * r.width - pad}px`;
-  mask.style.top = `${r.top + region.y * r.height - pad}px`;
-  mask.style.width = `${region.width * r.width + pad * 2}px`;
-  mask.style.height = `${region.height * r.height + pad * 2}px`;
+  masks.forEach((mask, index) => {
+    const region = regions[index];
+    if (!region) return;
+    const left = Math.max(r.left, r.left + region.x * r.width - pad);
+    const top = Math.max(r.top, r.top + region.y * r.height - pad);
+    const right = Math.min(r.right, r.left + (region.x + region.width) * r.width + pad);
+    const bottom = Math.min(r.bottom, r.top + (region.y + region.height) * r.height + pad);
+    mask.style.left = `${left}px`;
+    mask.style.top = `${top}px`;
+    mask.style.width = `${Math.max(1, right - left)}px`;
+    mask.style.height = `${Math.max(1, bottom - top)}px`;
+  });
 }
 
-function placeMask(video, region) {
-  removeMask();
-  activeRegion = region;
-  mask = document.createElement("div");
-  mask.className = "itb-mask";
-  document.documentElement.appendChild(mask);
-  positionMask(video, region);
+function placeMasks(video, regions) {
+  removeMasks();
+  activeRegions = regions;
+  masks = regions.map(() => {
+    const mask = document.createElement("div");
+    mask.className = "itb-mask";
+    document.documentElement.appendChild(mask);
+    return mask;
+  });
+  positionMasks(video, regions);
 }
 
 function enableManual(video) {
   const r = video.getBoundingClientRect();
-  placeMask(video, { x: .12, y: .68, width: .76, height: .13 });
+  placeMasks(video, [{ x: .12, y: .68, width: .76, height: .13 }]);
   manual = true;
+  const mask = masks[0];
   mask.classList.add("itb-manual");
   let offset = null;
   mask.addEventListener("pointerdown", (event) => {
@@ -106,8 +117,8 @@ async function analyse(video, id) {
     await new Promise((resolve) => setTimeout(resolve, settings.sampleIntervalMs));
   }
   if (id !== runId || !settings.enabled || video !== currentVideo) return;
-  const region = SubtitleDetector.detectSubtitleRegion(frames, width, height);
-  if (region) placeMask(video, region);
+  const regions = SubtitleDetector.detectSubtitleRegions(frames, width, height, { maxRegions: settings.maxMasks });
+  if (regions.length) placeMasks(video, regions);
   else toast("No stable subtitle region found. Press Alt+Shift+M for a manual mask.");
 }
 
@@ -118,14 +129,14 @@ function inspect() {
   currentVideo = video;
   currentSource = source;
   runId++;
-  removeMask();
+  removeMasks();
   if (video && settings.enabled) analyse(video, runId);
 }
 
 browser.runtime.onMessage.addListener((message) => {
   if (message.type === "toggle-mask") {
     settings.enabled = !settings.enabled;
-    if (!settings.enabled) removeMask();
+    if (!settings.enabled) removeMasks();
     else {
       runId++;
       if (currentVideo) analyse(currentVideo, runId);
@@ -134,13 +145,13 @@ browser.runtime.onMessage.addListener((message) => {
     toast(`Text blocker ${settings.enabled ? "on" : "off"}`);
   }
   if (message.type === "manual-mask") {
-    if (manual) { manual = false; mask.classList.remove("itb-manual"); }
+    if (manual) { manual = false; masks[0].classList.remove("itb-manual"); }
     else if (currentVideo) enableManual(currentVideo);
   }
   if (message.type === "settings-updated") browser.storage.local.get(DEFAULTS).then((value) => {
     settings = value;
     runId++;
-    removeMask();
+    removeMasks();
     if (currentVideo && settings.enabled) analyse(currentVideo, runId);
     else inspect();
   });
@@ -153,5 +164,5 @@ browser.storage.local.get(DEFAULTS).then((value) => {
 });
 
 addEventListener("resize", () => {
-  if (mask && !manual && currentVideo && activeRegion) positionMask(currentVideo, activeRegion);
+  if (masks.length && !manual && currentVideo && activeRegions.length) positionMasks(currentVideo, activeRegions);
 });

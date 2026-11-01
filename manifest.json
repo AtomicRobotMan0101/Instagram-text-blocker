@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Instagram Text Blocker",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Locally detects and masks burned-in subtitles on Instagram Reels.",
   "browser_specific_settings": {
     "gecko": {
