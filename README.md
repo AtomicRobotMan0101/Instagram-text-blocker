@@ -27,14 +27,14 @@ When a playing Reel becomes visible, the extension waits three seconds while sam
 The detector does not use OCR. It neither reads nor stores the words. Avoiding OCR keeps the extension small, fast, and private.
 
 ## What it looks like
-![7](https://github.com/user-attachments/assets/31989f1c-1f26-4c86-a712-59bbcf207931)
-![5](https://github.com/user-attachments/assets/a1e47ac0-5f5f-4872-adac-e2a5e6a604e9)
-![4](https://github.com/user-attachments/assets/2660fe7a-b6f1-4027-9c51-c1080d1b91ff)
-![3](https://github.com/user-attachments/assets/22df575f-c899-497d-87d2-23b33270fc0c)
-![1](https://github.com/user-attachments/assets/cd277906-af4d-4078-92b0-945416bd4e4d)
+<img width="250" alt="Example 7" src="images/7.png" />
+<img width="250" alt="Example 5" src="images/5.png" />
+<img width="250" alt="Example 4" src="images/4.png" />
+<img width="250" alt="Example 3" src="images/3.png" />
+<img width="250" alt="Example 1" src="images/1.png" />
 
 ## Where it fails
-![not_working_1](https://github.com/user-attachments/assets/c22090a3-3136-49c4-a901-c1194c1c55c1)
+<img width="250" alt="Known failure example" src="images/not_working_1.png" />
 
 ## Install temporarily (development)
 
