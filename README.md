@@ -1,4 +1,18 @@
+---
+id: fa429be7-cfb4-4815-a3f4-f61a637a6a63
+title: README
+tags: []
+pinned: false
+created: 2026-11-01T01:59:55.680224065+00:00
+modified: 2026-11-01T02:04:04.458574900+00:00
+---
 # README
+
+Not yet published within Firefoxs AddOns repo. This is a BETA under development.
+
+0.1 - project skelleton and initial testing
+
+0.2 - improved multi-area zones. Active scanning. Background text avoidance.
 
 # Instagram-text-blocker
 
@@ -13,16 +27,14 @@ When a playing Reel becomes visible, the extension waits three seconds while sam
 The detector does not use OCR. It neither reads nor stores the words. Avoiding OCR keeps the extension small, fast, and private.
 
 ## What it looks like
-
-<img width="250" alt="7" src="https://github.com/user-attachments/assets/31989f1c-1f26-4c86-a712-59bbcf207931" />
-<img width="250"  alt="5" src="https://github.com/user-attachments/assets/a1e47ac0-5f5f-4872-adac-e2a5e6a604e9" />
-<img width="250" alt="4" src="https://github.com/user-attachments/assets/2660fe7a-b6f1-4027-9c51-c1080d1b91ff" />
-<img width="250" alt="3" src="https://github.com/user-attachments/assets/22df575f-c899-497d-87d2-23b33270fc0c" />
-<img width="250" alt="1" src="https://github.com/user-attachments/assets/cd277906-af4d-4078-92b0-945416bd4e4d" />
-
+![7](https://github.com/user-attachments/assets/31989f1c-1f26-4c86-a712-59bbcf207931)
+![5](https://github.com/user-attachments/assets/a1e47ac0-5f5f-4872-adac-e2a5e6a604e9)
+![4](https://github.com/user-attachments/assets/2660fe7a-b6f1-4027-9c51-c1080d1b91ff)
+![3](https://github.com/user-attachments/assets/22df575f-c899-497d-87d2-23b33270fc0c)
+![1](https://github.com/user-attachments/assets/cd277906-af4d-4078-92b0-945416bd4e4d)
 
 ## Where it fails
-<img width="250" alt="not_working_1" src="https://github.com/user-attachments/assets/c22090a3-3136-49c4-a901-c1194c1c55c1" />
+![not_working_1](https://github.com/user-attachments/assets/c22090a3-3136-49c4-a901-c1194c1c55c1)
 
 ## Install temporarily (development)
 
