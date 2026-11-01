@@ -8,11 +8,13 @@ modified: 2026-11-01T02:04:04.458574900+00:00
 ---
 # README
 
-Not yet published within Firefoxs AddOns repo. This is a BETA under development.
+Not yet published within Firefox's Add-ons repository. This is a beta under development.
 
-0.1 - project skelleton and initial testing
+0.1 - project skeleton and initial testing
 
 0.2 - improved multi-area zones. Active scanning. Background text avoidance.
+
+0.3 - detects narrow vertically stacked text near video edges, based on a 50-video feed sample.
 
 # Instagram-text-blocker
 
@@ -22,7 +24,7 @@ A minimal, open-source Firefox extension for Linux that masks burned-in words or
 
 ## How it works
 
-When a playing Reel becomes visible, the extension waits three seconds while sampling scaled-down video frames. It looks for persistent, high-contrast horizontal regions typical of speech captions, top headlines, and centre banners, then leaves up to three black masks in place until the visible Reel changes. The delay, padding, and maximum number of bars are configurable.
+When a playing Reel becomes visible, the extension waits three seconds while sampling scaled-down video frames. It looks for persistent, high-contrast horizontal regions typical of speech captions, top headlines, and centre banners, plus constrained vertical text near either edge. It then leaves up to three black masks in place until the visible Reel changes. The delay, padding, and maximum number of bars are configurable.
 
 The detector does not use OCR. It neither reads nor stores the words. Avoiding OCR keeps the extension small, fast, and private.
 
@@ -69,7 +71,7 @@ Instagram commonly feeds video elements from same-origin `blob:`/MediaSource URL
 ## Limitations
 
 - Detection is heuristic. Logos, busy graphics, or strong horizontal detail can be mistaken for subtitles; low-contrast or unusually placed text can be missed.
-- Up to three rectangular bars are used. Free-moving words, vertical text, or more than three separated regions may need the manual fallback.
+- Up to three rectangular bars are used. Free-moving words, central vertical text, or more than three separated regions may need the manual fallback.
 - The mask follows the active video element but not every transient layout animation. Scrolling to the next Reel resets analysis and the mask.
 - Instagram DOM and media-delivery changes can break detection.
 - The extension masks pixels on screen; it does not remove text from the underlying video.
@@ -84,7 +86,7 @@ npm test
 npm run lint
 ```
 
-The tests cover blank frames, delayed captions, multiple simultaneous text regions, and mask limits. Real-site capture must be tested interactively because of authentication, media URLs, and browser security policy.
+The tests cover blank frames, delayed captions, multiple simultaneous text regions, mask limits, edge-aligned vertical text, and central-object rejection. Real-site capture must be tested interactively because of authentication, media URLs, and browser security policy.
 
 ## Privacy and licence
 

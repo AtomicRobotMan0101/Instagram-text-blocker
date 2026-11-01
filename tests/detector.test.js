@@ -56,3 +56,17 @@ test("limits automatic masks to the requested count", () => {
   const frames = Array.from({ length: 6 }, () => frame(160, 120, bands));
   assert.equal(detectSubtitleRegions(frames, 160, 120, { maxRegions: 2 }).length, 2);
 });
+
+test("finds narrow vertically stacked text near a side edge", () => {
+  const frames = Array.from({ length: 6 }, () => frame(160, 140, [[8, 28, 21, 116]]));
+  const regions = detectSubtitleRegions(frames, 160, 140);
+  const vertical = regions.find((region) => region.width < 0.2 && region.height > 0.4);
+  assert.ok(vertical);
+  assert.ok(vertical.x < 0.2);
+});
+
+test("does not treat a narrow central object as vertical text", () => {
+  const frames = Array.from({ length: 6 }, () => frame(160, 140, [[74, 28, 87, 116]]));
+  const regions = detectSubtitleRegions(frames, 160, 140);
+  assert.equal(regions.length, 0);
+});
